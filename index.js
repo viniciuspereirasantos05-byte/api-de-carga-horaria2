@@ -13,6 +13,10 @@ const port = 3000;
 
 app.use(express.json());
 
+// npm i cors
+const cors = require("cors")
+app.use(cors())
+
 // Lê o histórico do último ID
 const historico = fs.readFileSync("historico.json", "utf-8");
 
@@ -40,9 +44,19 @@ function salvarHistoricoId() {
 
 
 // GET /aulas
-app.get("/aulas", (req, res) => {
-    res.json(aulas);
-});
+app.get ("/horario/:dia", (req,res) =>{
+    const dia = req.params.dia
+    try{
+        const aulas = JSON.parse(fs.readFileSync("aulas.json", "utf8"))
+        const horario_dia = aula.filter((aula) => aula.dia == dia )
+        const ordena_horario = horario_dia.sort((a,b) => a.ordem - b.ordem)
+
+        res.status(200).json(ordena_horario)
+
+    } catch (erro) {
+        res.status(500).json({erro: erro.message})
+    }
+})
 
 
 // POST /aulas
