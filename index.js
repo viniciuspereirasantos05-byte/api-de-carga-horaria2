@@ -48,7 +48,7 @@ app.get ("/horario/:dia", (req,res) =>{
     const dia = req.params.dia
     try{
         const aulas = JSON.parse(fs.readFileSync("aulas.json", "utf8"))
-        const horario_dia = aula.filter((aula) => aula.dia == dia )
+        const horario_dia = aulas.filter((aula) => aula.dia == dia )
         const ordena_horario = horario_dia.sort((a,b) => a.ordem - b.ordem)
 
         res.status(200).json(ordena_horario)

@@ -39,19 +39,19 @@
                 <tr>
                     <td></td>
                     <td>
-                        <button onclick="carregar_horario('segunda')">carregar</button>
+                        <button onclick="carregar_horario(segunda)">carregar</button>
                     </td>
                     <td>
-                        <button onclick="carregar_horario('terça')">carregar</button>
+                        <button onclick="carregar_horario(terça)">carregar</button>
                     </td>
                     <td>
-                        <button onclick="carregar_horario('quarta')">carregar</button>
+                        <button onclick="carregar_horario(quarta)">carregar</button>
                     </td>
                     <td>
-                        <button onclick="carregar_horario('quinta')">carregar</button>
+                        <button onclick="carregar_horario(quinta)">carregar</button>
                     </td>
                     <td>
-                        <button onclick="carregar_horario('sexta')">carregar</button>
+                        <button onclick="carregar_horario(sexta)">carregar</button>
                     </td>
                 </tr>
             </tbody>
@@ -64,25 +64,10 @@
        async function carregar_horario(dia){
          const coluna_dia = documento.getElementbyId(dia)
           try {
-            const link = "http//localhost:3000/horario/" + dia
-            const consulta_api = await fetch(link)
-            if (consulta_api.ok) {
-                const aulas_dia = await consulta_api.json()
-                if ( aulas_dia.lenght == 0) {
-                    coluna_dia.innerHTML = "nenhuma aula cadastrada!"
-                } else {
-                    console,log(aulas_dia)
-                    coluna_dia.innerHTML = "<ul>"
-                        aulas_dia.forEach((aula) => {
-                            coluna_dia.innerHTML += "<li>"
-                        })
-                        coluna_dia.innerHTML += "</ul>"
-                }
-            }
+            const link = "http//localhost:3000/horario/"
           } catch (erro) {
             alert(erro)
-            coluna_dia.innerHTML = "Erro ao carregar horários!"
-
+            coluna_dia.innerHTML = "Erro ao carregar horários!S"
           }
        }
 
